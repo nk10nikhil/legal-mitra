@@ -745,6 +745,18 @@ LegalMitra/
 │   ├── analytics-service/
 │   ├── notification-service/
 │   ├── audit-service/                            # Central audit aggregator
+|   ├── registry-service/
+|   ├── citation-service/
+|   ├── court-scheduler/
+|   ├── bail-engine/
+|   ├── constitution-engine/
+|   ├── legal-simulation/
+|   ├── bias-research-lab/
+|   ├── legal-search/
+|   ├── ai-governance/
+|   ├── ai-calibration/
+|   ├── judicial-ai-assistant/
+|   ├── developer-platform/
 │   │
 │   ├── ai-service/
 │   │   ├── model-registry/
@@ -799,7 +811,15 @@ LegalMitra/
 │   │   ├── fir/
 │   │   ├── land-records/
 │   │   └── arbitration/
-│   │
+|   |
+│   ├── legal-research-hub/                       # Centralized legal research portal
+│   ├── legislative-drafting/                      # AI-assisted bill/law drafting for legislators
+│   ├── parliamentary-interface/                    # Integration with Parliament/Assembly proceedings
+│   ├── international-legal-cooperation/             # Cross-border legal assistance (MLATs, etc.)
+│   ├── legal-ethics-commission/                     # Lawyer ethics and disciplinary tracking
+│   ├── judicial-academy/                            # Training platform for judges (simulations, courses)
+│   ├── court-administration/                         # Administrative backend for court staff
+│   ├── legal-audit-trail-viewer/                     # Specialized UI for forensic auditors
 │   └── transparency-service/                     # Public trust APIs
 │
 ├── core/                                         # Cross-cutting systems
@@ -814,7 +834,16 @@ LegalMitra/
 │   ├── distributed-tracing/
 │   ├── logging/
 │   ├── compliance-monitor/
-│   └── risk-engine/
+│   ├── risk-engine/
+|   ├── event-schemas/
+|   ├── platform-control-plane/
+|   ├── feature-flags/
+|   ├── config-management/
+│   ├── circuit-breaker/                            # Resilience patterns for service dependencies
+│   ├── schema-registry/                             # Avro/Protobuf schema management
+│   ├── tenant-management/                            # Multi-tenancy for state/district isolation
+│   ├── license-management/                            # Open source compliance tracking
+│   └── cost-visibility/                                # Cloud cost attribution per service
 │
 ├── domain/                                       # Domain-driven design
 │   ├── aggregates/
@@ -850,11 +879,36 @@ LegalMitra/
 │   │   ├── geo-replication/
 │   │   └── ledger-fallback/
 │   │
+|   ├── service-mesh/
+|   ├── chaos-testing/
+|   ├── autoscaling/
+|   ├── edge-nodes/
+|   ├── incident-management/
+|   ├── legal-continuity/
 │   ├── federation/
 │   ├── docker/
 │   ├── k8s/
-│   └── terraform/
+│   ├── terraform/
+│   ├── api-marketplace/                              # Internal/external API catalog
+│   ├── developer-portal/                              # Documentation, API keys, usage metrics
+│   ├── compliance-scanner/                             # Automated security compliance checks (CIS, etc.)
+│   ├── penetration-testing/                             # Scheduled security testing
+│   ├── digital-preservation/                             # Long-term archival (century-scale)
+│   └── green-it/                                          # Carbon footprint monitoring
 │
+├── data-platform/
+|   ├── pipelines
+|   ├── warehouse
+|   ├── analytics
+│   ├── pipelines/                                     # Data ingestion (batch/streaming)
+│   ├── warehouse/                                      # Data lakehouse (Iceberg/Delta)
+│   ├── analytics/                                       # BI tools, dashboards
+│   ├── feature-store/                                    # ML feature management
+│   ├── data-quality/                                      # Data validation and monitoring
+│   ├── data-lineage/                                      # End-to-end data traceability
+│   └── data-catalog/                                       # Metadata management (OpenMetadata)
+|
+|
 ├── policy-feedback-engine/                       # Court-to-policy loop
 │   ├── legislative-impact-analysis/
 │   ├── reform-suggestions/
@@ -873,7 +927,30 @@ LegalMitra/
 │   ├── logger/
 │   ├── crypto-utils/
 │   ├── sdk/
-│   └── shared-config/
+│   ├── shared-config/
+│   ├── legal-constants/                                # Centralized legal codes, sections, penalties
+│   ├── jurisdiction-utils/                              # State-specific rule handling
+│   ├── audit-helpers/                                    # Standardized audit logging
+│   ├── legal-entity-extractor/                            # Specialized NER for legal texts
+│   └── compliance-rules-engine/                            # Business rules for compliance
+|
+├── governance/                                         # Platform governance documentation
+│   ├── ai-ethics-framework/                            # AI principles, bias thresholds
+│   ├── data-protection-impact-assessments/              # DPIA reports
+│   ├── security-policies/                                # ISO 27001, etc.
+│   ├── business-continuity-plan/                          # Disaster recovery procedures
+│   ├── incident-response/                                  # Security incident playbooks
+│   └── compliance-certifications/                          # Certifications (STQC, etc.)
+|
+├── legal-corpus/                                        # Machine-readable legal data
+│   ├── constitution/                                     # Constitution of India
+│   ├── codes/                                             # IPC, CrPC, CPC, etc.
+│   ├── acts/                                              # Central and state acts
+│   ├── rules/                                             # Statutory rules
+│   ├── regulations/                                        # Regulatory guidelines
+│   ├── case-law/                                           # Annotated judgments
+│   ├── treaties/                                           # International treaties
+│   └── legal-gazettes/                                      # Official notifications
 │
 ├── scripts/
 ├── docs/
