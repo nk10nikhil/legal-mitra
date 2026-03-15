@@ -18,6 +18,11 @@ const navItems = [
   { href: "/about", label: "About" },
 ];
 
+const authItems = [
+  { href: "/auth/login", label: "Login" },
+  { href: "/auth/register", label: "Register" },
+];
+
 export function Navbar() {
   const pathname = usePathname();
   const { mobileNavOpen, toggleMobileNav, closeMobileNav } = useUIStore();
@@ -46,6 +51,11 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
+          {authItems.map((item) => (
+            <Button key={item.href} asChild variant={item.href.endsWith("login") ? "outline" : "default"} size="sm">
+              <Link href={item.href}>{item.label}</Link>
+            </Button>
+          ))}
           <ThemeToggle />
           <Button asChild variant="outline" size="sm">
             <Link href="https://github.com" target="_blank" rel="noreferrer">
@@ -65,6 +75,11 @@ export function Navbar() {
           <div className="flex flex-col gap-3">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} onClick={closeMobileNav} className="text-sm font-medium">
+                {item.label}
+              </Link>
+            ))}
+            {authItems.map((item) => (
+              <Link key={item.href} href={item.href} onClick={closeMobileNav} className="text-sm font-semibold">
                 {item.label}
               </Link>
             ))}

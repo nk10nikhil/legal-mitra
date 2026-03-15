@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  citizen
+  lawyer
+  judge
+  police
+  admin
+}
+
+enum CaseStatus {
+  draft
+  active
+  hearing_scheduled
+  closed
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String
+  email         String         @unique
+  phone         String?        @unique
+  password_hash String
+  role          Role           @default(citizen)
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+  casesCreated  Case[]         @relation("CaseCreatedBy")
+  lawyerCases   Case[]         @relation("CaseAssignedLawyer")
+  judgeCases    Case[]         @relation("CaseAssignedJudge")
+  evidence      Evidence[]
+  hearings      Hearing[]
+  notifications Notification[]
+  aiLogs        AiLog[]
+}
+
+model Case {
+  id              String       @id @default(cuid())
+  title           String
+  description     String
+  status          CaseStatus   @default(draft)
+  priority        String
+  created_by      String
+  assigned_lawyer String?
+  assigned_judge  String?
+  created_at      DateTime     @default(now())
+  updated_at      DateTime     @updatedAt
+  createdBy       User         @relation("CaseCreatedBy", fields: [created_by], references: [id])
+  assignedLawyer  User?        @relation("CaseAssignedLawyer", fields: [assigned_lawyer], references: [id])
+  assignedJudge   User?        @relation("CaseAssignedJudge", fields: [assigned_judge], references: [id])
+  evidence        Evidence[]
+  documents       Document[]
+  hearings        Hearing[]
+  aiLogs          AiLog[]
+}
+
+model Evidence {
+  id          String   @id @default(cuid())
+  case_id     String
+  uploaded_by String
+  file_url    String
+  hash        String
+  description String?
+  created_at  DateTime @default(now())
+  case        Case     @relation(fields: [case_id], references: [id])
+  uploadedBy  User     @relation(fields: [uploaded_by], references: [id])
+}
+
+model Document {
+  id          String   @id @default(cuid())
+  case_id     String
+  file_url    String
+  title       String
+  created_at  DateTime @default(now())
+  case        Case     @relation(fields: [case_id], references: [id])
+}
+
+model Hearing {
+  id             String   @id @default(cuid())
+  case_id        String
+  judge_id       String
+  scheduled_time DateTime
+  room_id        String
+  status         String
+  created_at     DateTime @default(now())
+  case           Case     @relation(fields: [case_id], references: [id])
+  judge          User     @relation(fields: [judge_id], references: [id])
+}
+
+model Notification {
+  id         String   @id @default(cuid())
+  user_id    String
+  type       String
+  message    String
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now())
+  user       User     @relation(fields: [user_id], references: [id])
+}
+
+model AiLog {
+  id         String   @id @default(cuid())
+  user_id    String
+  case_id    String?
+  prompt     String
+  response   String
+  created_at DateTime @default(now())
+  user       User     @relation(fields: [user_id], references: [id])
+  case       Case?    @relation(fields: [case_id], references: [id])
+}

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, Sora } from "next/font/google";
 import "./globals.css";
+import { AppProviders } from "@/components/app-providers";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const bodyFont = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -41,13 +41,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${bodyFont.variable} ${headingFont.variable} font-[var(--font-body)]`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <AppProviders>
           <div className="relative min-h-screen">
             <Navbar />
             <main className="mx-auto w-full max-w-7xl px-4 pb-20 pt-24 sm:px-6 lg:px-8">{children}</main>
             <Footer />
           </div>
-        </ThemeProvider>
+        </AppProviders>
       </body>
     </html>
   );
